@@ -9,7 +9,7 @@
 % 如果没有这一句命令，XeTeX会出错，原因参见
 % http://bbs.ctex.org/viewthread.php?tid=60547
 \DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
-% \usepackage{tkz-euclide}
+\usepackage{tkz-euclide}
 % \usetkzobj{all}
 
 \usepackage{amsmath, amsthm, amsfonts, amssymb, mathtools, yhmath, mathrsfs}
@@ -229,6 +229,661 @@ status open
 \end_layout
 
 \begin_layout Paragraph
+一.
+ (本题满分 40 分)
+\end_layout
+
+\begin_layout Standard
+如图, 在凸四边形 
+\begin_inset Formula $ABCD$
+\end_inset
+
+ 中, 
+\begin_inset Formula $\angle ABC=\angle ADC=90^{\circ}$
+\end_inset
+
+, 对角线 
+\begin_inset Formula $BD$
+\end_inset
+
+ 上一点 
+\begin_inset Formula $P$
+\end_inset
+
+ 满足 
+\begin_inset Formula $\angle APB=2\angle CPD$
+\end_inset
+
+, 线段 
+\begin_inset Formula $AP$
+\end_inset
+
+ 上两点 
+\begin_inset Formula $X,Y$
+\end_inset
+
+ 满足 
+\begin_inset Formula $\angle AXB=2\angle ADB$
+\end_inset
+
+, 
+\begin_inset Formula $\angle AYD=2\angle ABD$
+\end_inset
+
+.
+ 证明: 
+\begin_inset Formula $BD=2XY$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzInit[xmin=-1, xmax=8, ymin=-4, ymax=5]
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+tkzAxeXY
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+tkzGrid
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+tkzClip
+\end_layout
+
+\begin_layout Plain Layout
+
+% 定义A,B,D
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDefPoint[label=135:$A$](0,0){A}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDefPoint[label=90:$B$](5,3){B}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDefPoint[label=-90:$D$](5.5,-3){D}
+\end_layout
+
+\begin_layout Plain Layout
+
+% 定义点C
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDefLine[perpendicular=through B, K=-.5](A,B)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzGetPoint{cb}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDefLine[perpendicular=through D, K=.5](A,D)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzGetPoint{cd}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzInterLL(B,cb)(D,cd) 
+\backslash
+tkzGetPoint{C}
+\end_layout
+
+\begin_layout Plain Layout
+
+% 外接圆
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzCircumCenter(A,B,C)
+\backslash
+tkzGetPoint{O}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawCircle[color=blue,dashed](O,A)
+\end_layout
+
+\begin_layout Plain Layout
+
+% 定义点L
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDefPointBy[projection=onto B--D](C)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzGetPoint{L}
+\end_layout
+
+\begin_layout Plain Layout
+
+% 连线
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawSegments[color=red,line width=1pt](A,B A,D B,C D,C B,D)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawSegments[color=blue,dashed](C,L)
+\end_layout
+
+\begin_layout Plain Layout
+
+% 获取点K
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzCalcLength[cm](C,L) 
+\backslash
+tkzGetLength{rCL}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzCalcLength[cm](O,C) 
+\backslash
+tkzGetLength{rOC}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzInterCC(C,L)(O,C) 
+\backslash
+tkzGetPoints{Lp}{K}
+\end_layout
+
+\begin_layout Plain Layout
+
+% 获得交点 P 并连线
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawSegments[color=blue,dashed](A,K C,K A,C B,O)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzInterLL(A,K)(D,B) 
+\backslash
+tkzGetPoint{P}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawSegments[color=red](C,P A,P)
+\end_layout
+
+\begin_layout Plain Layout
+
+% OAB, OAD 的外接圆弧, 圆与直线的交点X,Y
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzCircumCenter(A,B,O)
+\backslash
+tkzGetPoint{Oab}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawArc[dashed,color=blue](Oab,A)(B)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzCircumCenter(A,D,O)
+\backslash
+tkzGetPoint{Oad}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawArc[dashed,color=blue](Oad,D)(A)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzInterLC(A,P)(Oab,A) 
+\backslash
+tkzGetFirstPoint{X}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzInterLC(A,P)(Oad,A) 
+\backslash
+tkzGetSecondPoint{Y}
+\end_layout
+
+\begin_layout Plain Layout
+
+% 垂足 M
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDefPointBy[projection=onto A--P](O)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzGetPoint{M}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawSegments[color=blue,dashed](O,M)
+\end_layout
+
+\begin_layout Plain Layout
+
+% 标注点
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawPoints[color=red](A,B,C,D,L,K,O,P,M,X,Y)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzLabelPoints[right=1pt](C,L,K,O,P)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzLabelPoints[above=1pt](M,Y,X)
+\end_layout
+
+\begin_layout Plain Layout
+
+% 画线
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawSegments[color=red,line width=1pt](Y,D B,X)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzDrawSegments[color=blue,dashed](O,Y O,D)
+\end_layout
+
+\begin_layout Plain Layout
+
+% 画垂足
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzMarkRightAngle[fill=lightgray,opacity=0.7](D,L,C)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzMarkRightAngle[fill=lightgray,opacity=0.7](A,B,C)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzMarkRightAngle[fill=lightgray,opacity=0.7](C,D,A)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzMarkRightAngle[fill=lightgray,opacity=0.7](A,K,C)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tkzMarkRightAngle[fill=lightgray,opacity=0.7](A,M,O)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+证明:
+\end_layout
+
+\begin_layout Standard
+注意 
+\begin_inset Formula $\angle ABC=\angle ADC=90^{\circ}$
+\end_inset
+
+, 取 
+\begin_inset Formula $AC$
+\end_inset
+
+ 的中点 
+\begin_inset Formula $O$
+\end_inset
+
+, 则 
+\begin_inset Formula $O$
+\end_inset
+
+ 为凸四边形 
+\begin_inset Formula $ABCD$
+\end_inset
+
+ 的外心.
+ 显然 
+\begin_inset Formula $P,B$
+\end_inset
+
+ 在 
+\begin_inset Formula $AC$
+\end_inset
+
+ 的同侧, 否则 
+\begin_inset Formula $\angle APB\le\angle CPD<2\angle CPD$
+\end_inset
+
+, 不合题意.
+\end_layout
+
+\begin_layout Standard
+根据条件, 可知
+\begin_inset Formula 
+\[
+\angle AXB=2\angle ADB=\angle AOB,\quad\angle AYD=2\angle ABD=\angle AOD,
+\]
+
+\end_inset
+
+分别得到 
+\begin_inset Formula $A,O,X,B$
+\end_inset
+
+ 四点共圆, 
+\begin_inset Formula $A,Y,O,D$
+\end_inset
+
+ 四点共圆.
+\end_layout
+
+\begin_layout Standard
+因此 
+\begin_inset Formula $\angle OXA=\angle OBA=\angle CAB=\angle CDB$
+\end_inset
+
+, 
+\begin_inset Formula $\angle OYP,\angle ODA=\angle CAD=\angle CBD$
+\end_inset
+
+, 所以 
+\begin_inset Formula $\triangle OXY\sim\triangle CDB$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+设 
+\begin_inset Formula $OM\perp AP$
+\end_inset
+
+ 于点 
+\begin_inset Formula $M$
+\end_inset
+
+, 
+\begin_inset Formula $CK\perp AP$
+\end_inset
+
+ 于点 
+\begin_inset Formula $K$
+\end_inset
+
+, 
+\begin_inset Formula $CL\perp BD$
+\end_inset
+
+ 于点 
+\begin_inset Formula $L$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+由 
+\begin_inset Formula $O$
+\end_inset
+
+ 为 
+\begin_inset Formula $AC$
+\end_inset
+
+ 的中点, 得 
+\begin_inset Formula $CK=2OM$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+由于 
+\begin_inset Formula $\angle KPL=\angle APB=2\angle CPD$
+\end_inset
+
+, 即有 
+\begin_inset Formula $PC$
+\end_inset
+
+ 平分 
+\begin_inset Formula $\angle KPL$
+\end_inset
+
+, 故 
+\begin_inset Formula $CK=CL$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+考虑到 
+\begin_inset Formula $OM$
+\end_inset
+
+, 
+\begin_inset Formula $CL$
+\end_inset
+
+ 是相似三角形 
+\begin_inset Formula $\triangle OXY$
+\end_inset
+
+, 
+\begin_inset Formula $\triangle CDB$
+\end_inset
+
+ 的对应边 
+\begin_inset Formula $XY$
+\end_inset
+
+, 
+\begin_inset Formula $DB$
+\end_inset
+
+ 上的高, 从而
+\begin_inset Formula 
+\[
+\frac{XY}{BD}=\frac{OM}{CL}=\frac{OM}{CK}=\frac{1}{2},
+\]
+
+\end_inset
+
+即有 
+\begin_inset Formula $BD=2XY$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
 二.
  (本题满分 40 分)
 \end_layout
@@ -328,7 +983,7 @@ m_{i} & =p_{i}^{\alpha_{i}}\left(1+\frac{1}{p_{i}}+\cdots+\frac{1}{p_{i}^{\alpha
 所以, 
 \begin_inset Formula 
 \[
-m_{i}+1\le2p_{i}^{\alpha_{i}}=\frac{2n}{\prod\limits_{{j=1\atop j\ne i}}^{k}p_{j}^{\alpha_{j}}}\le\frac{2n}{2^{k-1}}\le\frac{2n}{k},
+m_{i}+1\le2p_{i}^{\alpha_{i}}=\frac{2n}{\prod\limits _{{j=1\atop j\ne i}}^{k}p_{j}^{\alpha_{j}}}\le\frac{2n}{2^{k-1}}\le\frac{2n}{k},
 \]
 
 \end_inset
@@ -1299,6 +1954,440 @@ S_{k}=\sum_{i=1}^{k}m_{i}\le\sum_{i=1}^{k}(2\lambda_{i}-1)=2\sum_{i=1}^{k}\lambd
 
  取到最小值 
 \begin_inset Formula $40940$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+四.
+ (本题满分 50 分) 
+\end_layout
+
+\begin_layout Standard
+求具有下述性质的最小正整数 
+\begin_inset Formula $t$
+\end_inset
+
+: 将 
+\begin_inset Formula $100\times100$
+\end_inset
+
+ 的方格纸的每个小方格染为某一种颜色, 若每一种颜色的小方格数目均不超过 
+\begin_inset Formula $104$
+\end_inset
+
+, 则存在一个 
+\begin_inset Formula $1\times t$
+\end_inset
+
+ 或 
+\begin_inset Formula $t\times1$
+\end_inset
+
+ 的矩形, 其中 
+\begin_inset Formula $t$
+\end_inset
+
+ 个小方格含有至少三种不同颜色.
+\end_layout
+
+\begin_layout Paragraph
+解:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $t_{\min}=12$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+将方格纸划分为 
+\begin_inset Formula $100$
+\end_inset
+
+ 个 
+\begin_inset Formula $10\times10$
+\end_inset
+
+ 的正方形, 每个正方形中 
+\begin_inset Formula $100$
+\end_inset
+
+ 个小方格染同一种颜色, 不同的正方形染不同的颜色, 这样的染色方法满足题目条件, 且易知任意 
+\begin_inset Formula $1\times11$
+\end_inset
+
+ 或 
+\begin_inset Formula $11\times1$
+\end_inset
+
+ 的矩形中至多含有两种颜色的小方格.
+ 因此 
+\begin_inset Formula $t\ge12$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+下面证明 
+\begin_inset Formula $t=12$
+\end_inset
+
+ 为最小值, 需要以下引理.
+\end_layout
+
+\begin_layout Standard
+引理: 将 
+\begin_inset Formula $1\times100$
+\end_inset
+
+ 的方格表 
+\begin_inset Formula $X$
+\end_inset
+
+ 的每个小方格染成某种颜色, 如果以下两个条件之一成立, 则存在一个 
+\begin_inset Formula $1\times12$
+\end_inset
+
+ 的矩形, 其中含有至少三种颜色.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(1) 
+\begin_inset Formula $X$
+\end_inset
+
+ 中至少有 
+\begin_inset Formula $11$
+\end_inset
+
+ 中颜色;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(2) 
+\begin_inset Formula $X$
+\end_inset
+
+ 中恰好有 
+\begin_inset Formula $10$
+\end_inset
+
+ 中颜色, 且每种颜色恰染了 
+\begin_inset Formula $10$
+\end_inset
+
+ 个小方格.
+\end_layout
+
+\begin_layout Standard
+引理的证明: 用反证法, 假设结论不成立.
+\end_layout
+
+\begin_layout Standard
+取每种颜色的小方格最右边的那个, 从左往右位于第 
+\begin_inset Formula $x_{1}<x_{2}<\cdots<x_{k}$
+\end_inset
+
+ 格, 分别染 
+\begin_inset Formula $c_{1},c_{2},\cdots,c_{k}$
+\end_inset
+
+ 色, 则对于 
+\begin_inset Formula $2\le i<k$
+\end_inset
+
+, 有 
+\begin_inset Formula $x_{i}-x_{i-1}\ge11$
+\end_inset
+
+.
+ 这是因为若 
+\begin_inset Formula $x_{i}-x_{i-1}\le10$
+\end_inset
+
+, 则在第 
+\begin_inset Formula $x_{i-1}$
+\end_inset
+
+ 格至第 
+\begin_inset Formula $x_{i}+1$
+\end_inset
+
+ 格 (不超过 
+\begin_inset Formula $12$
+\end_inset
+
+ 格) 中至少含有三种不同颜色 (第 
+\begin_inset Formula $x_{i-1}$
+\end_inset
+
+ 格为 
+\begin_inset Formula $c_{i-1}$
+\end_inset
+
+ 色, 第 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ 格为 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ 色, 第 
+\begin_inset Formula $x_{i}+1$
+\end_inset
+
+ 格一定不同于 
+\begin_inset Formula $c_{i-1}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ 色), 与假设不符.
+ 
+\end_layout
+
+\begin_layout Standard
+若条件 (1) 成立, 则 
+\begin_inset Formula $k\ge11$
+\end_inset
+
+, 于是 
+\begin_inset Formula $x_{10}\ge x_{1}+9\times11\ge100$
+\end_inset
+
+, 
+\begin_inset Formula $x_{11}>100$
+\end_inset
+
+, 矛盾.
+ 因此在条件 (1) 下结论成立.
+\end_layout
+
+\begin_layout Standard
+若条件 (2) 成立, 考虑第 
+\begin_inset Formula $x_{1}+1$
+\end_inset
+
+ 格至第 
+\begin_inset Formula $x_{1}+11$
+\end_inset
+
+ 格, 因每种颜色的方格至多 
+\begin_inset Formula $10$
+\end_inset
+
+ 个, 故这 
+\begin_inset Formula $11$
+\end_inset
+
+ 个方格至少含有两种颜色, 且均不同于 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ 色, 则从第 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ 至 
+\begin_inset Formula $x_{1}+11$
+\end_inset
+
+ 格中至少含有三种颜色, 与条件 (2) 不符.
+ 因此在条件 (2) 下结论也成立.
+\end_layout
+
+\begin_layout Standard
+引理得证.
+\end_layout
+
+\begin_layout Standard
+回到原问题, 设 
+\begin_inset Formula $c_{1},c_{2},\cdots,c_{k}$
+\end_inset
+
+ 为出现的所有颜色.
+\end_layout
+
+\begin_layout Standard
+对于 
+\begin_inset Formula $1\le i\le k$
+\end_inset
+
+, 记 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ 为含有 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ 色的小方格的个数, 
+\begin_inset Formula $u_{i}$
+\end_inset
+
+ 为含有 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ 色小方格的行数, 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+ 为含有 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ 色小方格的列数.
+ 由条件知 
+\begin_inset Formula $s_{i}\le104$
+\end_inset
+
+.
+ 又显然 
+\begin_inset Formula $u_{i}v_{i}\ge s_{i}$
+\end_inset
+
+, 等号成立当且仅当有 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ 色小方格的行与列交叉位置上都是 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ 色小方格.
+\end_layout
+
+\begin_layout Standard
+下面证明: 
+\begin_inset Formula $u_{i}+v_{i}\ge\frac{s_{i}}{5}$
+\end_inset
+
+, 等号成立当且仅当 
+\begin_inset Formula $u_{i}=v_{i}=10$
+\end_inset
+
+, 
+\begin_inset Formula $s_{i}=100$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+若 
+\begin_inset Formula $u_{i}+v_{i}\ge21$
+\end_inset
+
+, 则由 
+\begin_inset Formula $s_{i}\le104$
+\end_inset
+
+ 知 
+\begin_inset Formula $u_{i}+v_{i}>\frac{s_{i}}{5}$
+\end_inset
+
+; 若 
+\begin_inset Formula $u_{i}+v_{i}\le20$
+\end_inset
+
+, 则
+\begin_inset Formula 
+\[
+u_{i}+v_{i}\ge\frac{(u_{i}+v_{i})^{2}}{20}\ge\frac{u_{i}v_{i}}{5}\ge\frac{s_{i}}{5},
+\]
+
+\end_inset
+
+等号成立当且仅当 
+\begin_inset Formula $u_{i}=v_{i}=10$
+\end_inset
+
+, 
+\begin_inset Formula $s_{i}=100$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+于是 
+\begin_inset Formula $\sum_{i=1}^{k}(u_{i}+v_{i})\ge\sum_{i=1}^{k}\frac{s_{i}}{5}=2000$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+若 
+\begin_inset Formula $\sum_{i=1}^{k}(u_{i}+v_{i})>2000$
+\end_inset
+
+, 由抽屉原理知, 存在一行或一列至少含有 
+\begin_inset Formula $11$
+\end_inset
+
+ 种颜色的小方格.
+\end_layout
+
+\begin_layout Standard
+若 
+\begin_inset Formula $\sum_{i=1}^{k}(u_{i}+v_{i})=2000$
+\end_inset
+
+, 则由等号成立的条件, 可知每种颜色恰染 
+\begin_inset Formula $100$
+\end_inset
+
+ 格, 且是 
+\begin_inset Formula $10$
+\end_inset
+
+ 行与 
+\begin_inset Formula $10$
+\end_inset
+
+ 列交叉位置, 因此每一行每一列中恰有 
+\begin_inset Formula $10$
+\end_inset
+
+ 种颜色的方格, 每种颜色的方格恰有 
+\begin_inset Formula $10$
+\end_inset
+
+ 个.
+\end_layout
+
+\begin_layout Standard
+由引理可知, 这两种情况都导致存在 
+\begin_inset Formula $1\times12$
+\end_inset
+
+ 或 
+\begin_inset Formula $12\times1$
+\end_inset
+
+ 的矩形含有至少三种颜色的小方格.
+ 
+\end_layout
+
+\begin_layout Standard
+综上所述, 所求最小的 
+\begin_inset Formula $t$
+\end_inset
+
+ 为 
+\begin_inset Formula $12$
 \end_inset
 
 .
